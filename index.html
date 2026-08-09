@@ -1,305 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshit | Portfolio</title>
+    <title>Akshit Kumar Bansal | Portfolio</title>
     <!-- Importing a modern font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Variables for easy color management */
-        :root {
-            --primary: #1abc9c;
-            --primary-hover: #16a085;
-            --dark: #2c3e50;
-            --dark-gradient: #1a252f;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-light: #666666;
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1abc9c',
+                        'primary-hover': '#16a085',
+                        dark: '#2c3e50',
+                        'dark-gradient': '#1a252f',
+                        bgcolor: '#f4f7f6',
+                        'text-main': '#333333',
+                        'text-light': '#666666',
+                        'tag-bg': '#e8f8f5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    }
+                }
+            }
         }
-
-        /* Base & Reset */
-        html {
-            scroll-behavior: smooth; /* Smooth scrolling for nav links */
-        }
-        body {
-            font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-main);
-            line-height: 1.7;
-            background-color: var(--bg-color);
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: var(--dark);
-            padding: 1rem 0;
-            text-align: center;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        /* Header / Hero Section */
-        header {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-gradient) 100%);
-            color: #fff;
-            padding: 6rem 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 3.5rem;
-            letter-spacing: -1px;
-            font-weight: 700;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            color: var(--primary);
-            font-weight: 400;
-        }
-
-        /* Layout & Sections */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem 20px;
-        }
-        section {
-            margin-bottom: 4rem;
-            padding-top: 2rem; /* Spacing for sticky nav */
-        }
-        h2 {
-            font-size: 2rem;
-            color: var(--dark);
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            position: relative;
-        }
-        /* Custom underline for headers */
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 50%;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-        .about-text {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 800px;
-        }
-
-        /* Grid & Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-            border-top: 4px solid var(--primary);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-        }
-        .card h3 {
-            margin-top: 0;
-            color: var(--dark);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        .card p {
-            color: var(--text-light);
-            flex-grow: 1; /* Pushes the link to the bottom */
-        }
-        .card a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-        .card a:hover {
-            color: var(--primary-hover);
-        }
-
-        /* Tech Tags */
-        .tags {
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        .tag {
-            display: inline-block;
-            background: #e8f8f5;
-            color: var(--primary-hover);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 0.4rem;
-            margin-bottom: 0.4rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 20px;
-            background: var(--dark);
-            color: #fff;
-        }
-        footer p { margin: 0; color: #ccc; }
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            margin: 0 10px;
-        }
-        footer a:hover { color: #fff; }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.5rem; }
-            nav a { margin: 0 10px; font-size: 0.85rem; }
-            .grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="font-sans text-text-main bg-bgcolor leading-relaxed m-0 p-0">
 
     <!-- Sticky Navigation -->
-    <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#coding-profiles">Coding Profiles</a>
+    <nav class="sticky top-0 bg-dark py-4 text-center z-50 shadow-md">
+        <a href="#about" class="text-white no-underline mx-3 sm:mx-4 font-semibold text-sm sm:text-base transition-colors duration-300 hover:text-primary">About</a>
+        <a href="#skills" class="text-white no-underline mx-3 sm:mx-4 font-semibold text-sm sm:text-base transition-colors duration-300 hover:text-primary">Skills</a>
+        <a href="#projects" class="text-white no-underline mx-3 sm:mx-4 font-semibold text-sm sm:text-base transition-colors duration-300 hover:text-primary">Projects</a>
+        <a href="#coding-profiles" class="text-white no-underline mx-3 sm:mx-4 font-semibold text-sm sm:text-base transition-colors duration-300 hover:text-primary">Coding Profiles</a>
     </nav>
 
-    <header>
-        <h1>Akshit</h1>
-        <p>Computer Science Engineering Student (7th Sem)</p>
+    <!-- Header / Hero Section -->
+    <header class="bg-gradient-to-br from-dark to-dark-gradient text-white py-24 px-5 text-center">
+        <h1 class="m-0 text-4xl sm:text-6xl font-bold tracking-tight">Akshit Kumar Bansal</h1>
+        <p class="text-lg sm:text-xl mt-4 text-primary font-normal">Computer Science Engineering Student (7th Sem)</p>
     </header>
 
-    <div class="container">
+    <div class="max-w-[1000px] mx-auto px-5 py-8">
+        
         <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
-            <p class="about-text">I am a computer science student with a strong focus on algorithmic problem-solving and cloud infrastructure. I thrive on tackling complex data structures and building scalable backend systems.</p>
+        <section id="about" class="mb-16 pt-8">
+            <h2 class="text-3xl text-dark mt-0 mb-6 inline-block relative font-bold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-1/2 after:h-[3px] after:bg-primary after:rounded-sm">About Me</h2>
+            <p class="text-lg text-text-light max-w-[800px]">I am a computer science student with a strong focus on algorithmic problem-solving and cloud infrastructure. I thrive on tackling complex data structures and building scalable backend systems.</p>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Competitive Programming</h3>
-                    <div class="tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">Java</span>
-                        <span class="tag">DSA</span>
+        <section id="skills" class="mb-16 pt-8">
+            <h2 class="text-3xl text-dark mt-0 mb-6 inline-block relative font-bold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-1/2 after:h-[3px] after:bg-primary after:rounded-sm">Technical Skills</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Skill Card 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">Competitive Programming</h3>
+                    <div class="mt-2 mb-4 flex flex-wrap gap-2">
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">C++</span>
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">Java</span>
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">DSA</span>
                     </div>
-                    <p>Advanced algorithmic techniques including Dynamic Programming, Depth-First Search (DFS), and Sliding Window approaches.</p>
+                    <p class="text-text-light grow">Advanced algorithmic techniques including Dynamic Programming, Depth-First Search (DFS), and Sliding Window approaches.</p>
                 </div>
-                <div class="card">
-                    <h3>Cloud & Infrastructure</h3>
-                    <div class="tags">
-                        <span class="tag">AWS (EC2, ALB, SES)</span>
-                        <span class="tag">Nutanix</span>
+                <!-- Skill Card 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">Cloud & Infrastructure</h3>
+                    <div class="mt-2 mb-4 flex flex-wrap gap-2">
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">AWS (EC2, ALB, SES)</span>
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">Nutanix</span>
                     </div>
-                    <p>Experience configuring and managing AWS services and Nutanix environments (Prism Central & Element).</p>
+                    <p class="text-text-light grow">Experience configuring and managing AWS services and Nutanix environments (Prism Central & Element).</p>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Adobe India Grand Finale</h3>
-                    <div class="tags">
-                        <span class="tag">System Design</span>
-                        <span class="tag">Optimization</span>
+        <section id="projects" class="mb-16 pt-8">
+            <h2 class="text-3xl text-dark mt-0 mb-6 inline-block relative font-bold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-1/2 after:h-[3px] after:bg-primary after:rounded-sm">Featured Projects</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Project Card 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">Adobe India Grand Finale</h3>
+                    <div class="mt-2 mb-4 flex flex-wrap gap-2">
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">System Design</span>
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">Optimization</span>
                     </div>
-                    <p>Collaborated on complex problem-solving, algorithm optimization, and system design for the Adobe India Grand Finale challenge.</p>
-                    <a href="LINK_TO_YOUR_REPO" target="_blank">View Code &rarr;</a>
+                    <p class="text-text-light grow">Collaborated on complex problem-solving, algorithm optimization, and system design for the Adobe India Grand Finale challenge.</p>
+                    <a href="https://github.com/AkshitKumarBansal" target="_blank" class="text-primary font-semibold transition-colors duration-300 inline-block mt-4 hover:text-primary-hover">View Code &rarr;</a>
                 </div>
-                <div class="card">
-                    <h3>[Your Next Project]</h3>
-                    <div class="tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
+                <!-- Project Card 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">Split Bill Web App</h3>
+                    <div class="mt-2 mb-4 flex flex-wrap gap-2">
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">JavaScript</span>
+                        <span class="inline-block bg-tag-bg text-primary-hover px-3 py-1 rounded-full text-xs font-semibold">Web Development</span>
                     </div>
-                    <p>Brief description of the technologies used and the core logic behind the project. Highlight the impact or main feature.</p>
-                    <a href="#" target="_blank">View Code &rarr;</a>
+                    <p class="text-text-light grow">Developed a local web application designed to seamlessly calculate and manage shared expenses among groups.</p>
+                    <a href="https://github.com/AkshitKumarBansal/JavaScript_Projects" target="_blank" class="text-primary font-semibold transition-colors duration-300 inline-block mt-4 hover:text-primary-hover">View Code &rarr;</a>
                 </div>
             </div>
         </section>
 
         <!-- Coding Profiles Section -->
-        <section id="coding-profiles">
-            <h2>Algorithmic Problem Solving</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>LeetCode</h3>
-                    <p>Mastering core data structures like Binary Trees and advanced patterns such as Sliding Window and DFS.</p>
-                    <a href="https://leetcode.com/u/Akshit_Kumar_Bansal/" target="_blank">View Profile &rarr;</a>
+        <section id="coding-profiles" class="mb-16 pt-8">
+            <h2 class="text-3xl text-dark mt-0 mb-6 inline-block relative font-bold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-1/2 after:h-[3px] after:bg-primary after:rounded-sm">Algorithmic Problem Solving</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Profile Card 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">LeetCode</h3>
+                    <p class="text-text-light grow">Mastering core data structures like Binary Trees and advanced patterns such as Sliding Window and DFS.</p>
+                    <a href="https://leetcode.com/u/Akshit_Kumar_Bansal/" target="_blank" class="text-primary font-semibold transition-colors duration-300 inline-block mt-4 hover:text-primary-hover">View Profile &rarr;</a>
                 </div>
-                <div class="card">
-                    <h3>CodeChef</h3>
-                    <p>Participating in competitive programming challenges to optimize logic and problem-solving speed.</p>
-                    <a href="https://www.codechef.com/users/akshit_kbansal" target="_blank">View Profile &rarr;</a>
+                <!-- Profile Card 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">CodeChef</h3>
+                    <p class="text-text-light grow">Participating in competitive programming challenges to optimize logic and problem-solving speed.</p>
+                    <a href="https://www.codechef.com/users/akshit_kbansal" target="_blank" class="text-primary font-semibold transition-colors duration-300 inline-block mt-4 hover:text-primary-hover">View Profile &rarr;</a>
                 </div>
-                <div class="card">
-                    <h3>GeeksForGeeks</h3>
-                    <p>Strengthening foundational concepts and tackling dynamic programming optimizations.</p>
-                    <a href="https://www.geeksforgeeks.org/profile/akshitkumarbansal1801" target="_blank">View Profile &rarr;</a>
+                <!-- Profile Card 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">GeeksForGeeks</h3>
+                    <p class="text-text-light grow">Strengthening foundational concepts and tackling dynamic programming optimizations.</p>
+                    <a href="https://www.geeksforgeeks.org/profile/akshitkumarbansal1801" target="_blank" class="text-primary font-semibold transition-colors duration-300 inline-block mt-4 hover:text-primary-hover">View Profile &rarr;</a>
                 </div>
-                <div class="card">
-                    <h3>HackerRank</h3>
-                    <p>Refining syntax, database querying, and language-specific efficiencies.</p>
-                    <a href="#" target="_blank">View Profile &rarr;</a>
+                <!-- Profile Card 4 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
+                    <h3 class="mt-0 text-dark text-xl mb-2 font-bold">HackerRank</h3>
+                    <p class="text-text-light grow">Refining syntax, database querying, and language-specific efficiencies.</p>
+                    <a href="https://www.hackerrank.com/profile/akbansal6204" target="_blank" class="text-primary font-semibold transition-colors duration-300 inline-block mt-4 hover:text-primary-hover">View Profile &rarr;</a>
                 </div>
             </div>
         </section>
     </div>
 
     <!-- Footer -->
-    <footer>
-        <p>Let's connect and build something awesome.</p>
-        <br>
+    <footer class="text-center py-12 px-5 bg-dark text-white">
+        <p class="m-0 text-gray-300 mb-6">Let's connect and build something awesome.</p>
         <p>
-            <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank">GitHub</a> | 
-            <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a> | 
-            <a href="mailto:YOUR_EMAIL@example.com">Email Me</a>
+            <a href="https://github.com/AkshitKumarBansal" target="_blank" class="text-primary font-semibold mx-2 transition-colors duration-300 hover:text-white">GitHub</a> | 
+            <a href="https://www.linkedin.com/in/akshit-kumar-bansal-01aa50315/" target="_blank" class="text-primary font-semibold mx-2 transition-colors duration-300 hover:text-white">LinkedIn</a> | 
+            <a href="mailto:akbansal@gmail.com" class="text-primary font-semibold mx-2 transition-colors duration-300 hover:text-white">Email Me</a>
         </p>
     </footer>
+
 </body>
 </html>
